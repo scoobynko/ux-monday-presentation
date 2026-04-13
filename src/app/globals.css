@@ -13,13 +13,13 @@
  * To rebrand: only change the @theme alias mappings below.
  */
 
-@theme inline {
-  /* ── Layer 2: Brand aliases ─────────────────────────────────────────
-   * Maps Tailwind built-in palettes to brand names.
-   * Swap stone → slate, orange → violet, etc. — only here.
-   * These generate utilities: bg-base-500, text-brand-400, etc.
-   */
-
+/* ── Layer 2: Brand aliases ───────────────────────────────────────────
+ * NOT inline — these must exist as CSS custom properties at runtime
+ * so the semantic tokens in :root / .dark can reference them.
+ * Swap stone → slate, orange → violet, etc. — only here.
+ * Also generates utilities: bg-base-500, text-brand-400, etc.
+ */
+@theme {
   /* Neutral palette — swap stone for slate/zinc/gray here */
   --color-base-50:  var(--color-stone-50);
   --color-base-100: var(--color-stone-100);
@@ -41,8 +41,10 @@
   /* Brand accent — swap amber for any secondary hue here */
   --color-brand-accent-400: var(--color-amber-400);
   --color-brand-accent-500: var(--color-amber-500);
+}
 
-  /* ── Semantic utilities (shadcn) ──────────────────────────────────── */
+/* ── Semantic utilities + typography + radii (shadcn) ─────────────── */
+@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -75,12 +77,10 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* ── Typography ───────────────────────────────────────────────────── */
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
 
-  /* ── Radii ────────────────────────────────────────────────────────── */
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
